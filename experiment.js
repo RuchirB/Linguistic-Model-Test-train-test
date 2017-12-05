@@ -3,7 +3,7 @@
 // ## High-level overview
 // Things happen in this order:
 //
-// 1. Compute randomization parameters (which keys to press for even/odd and trial order), fill in the template <code>{{}}</code> slots that indicate which keys to press for even/odd, and show the instructions slide.
+// 1. Compute randomization parameters (which keys to press for even/same and trial order), fill in the template <code>{{}}</code> slots that indicate which keys to press for even/same, and show the instructions slide.
 // 2. Set up the experiment sequence object.
 // 3. When the subject clicks the start button, it calls <code>experiment.next()</code>
 // 4. <code>experiment.next()</code> checks if there are any trials left to do. If there aren't, it calls <code>experiment.end()</code>, which shows the finish slide, waits for 1.5 seconds, and then uses mmturkey to submit to Turk.
@@ -32,20 +32,20 @@ function randomElement(array) {
 
 // ## Configuration settings
 var allKeyBindings = [
-      {"p": "odd", "q": "even"},
-      {"p": "even", "q": "odd"} ],
+      {"p": "same", "q": "different"},
+      {"p": "different", "q": "same"} ],
     allTrialOrders = [
       [1,3,2,5,4,9,8,7,6],
       [8,4,3,7,5,6,2,1,9] ],
     myKeyBindings = randomElement(allKeyBindings),
     myTrialOrder = randomElement(allTrialOrders),
-    pOdd = (myKeyBindings["p"] == "odd");
+    psame = (myKeyBindings["p"] == "same");
 
 // Fill in the instructions template using jQuery's <code>html()</code> method. In particular,
-// let the subject know which keys correspond to even/odd. Here, I'm using the so-called **ternary operator**, which is a shorthand for <code>if (...) { ... } else { ... }</code>
+// let the subject know which keys correspond to different/same. Here, I'm using the so-called **ternary operator**, which is a shorthand for <code>if (...) { ... } else { ... }</code>
 
-$("#odd-key").text(pOdd ? "P" : "Q");
-$("#even-key").text(pOdd ? "Q" : "P");
+$("#same-key").text(psame ? "P" : "Q");
+$("#different-key").text(psame ? "Q" : "P");
 
 // Show the instructions slide -- this is what we want subjects to see first.
 showSlide("instructions");
@@ -56,7 +56,7 @@ showSlide("instructions");
 var experiment = {
   // Parameters for this sequence.
   trials: myTrialOrder,
-  // Experiment-specific parameters - which keys map to odd/even
+  // Experiment-specific parameters - which keys map to same/different
   keyBindings: myKeyBindings,
   // An array to store the data that we're collecting.
   data: [],
@@ -86,20 +86,19 @@ var experiment = {
 ]
 
 //First the training
-var simTrain1= $('<audio>').attr('src','sounds/'+sound_training[0]+'.mp3').attr("preload", "auto"); //yes
-
-var simTrain2 = $('<audio>').attr('src','sounds/'+sound_training[1]+'.mp3').attr("preload", "auto"); //yes
+var simTrain1= $('<audio>').attr('src','sounds/'+sound_training[0]+'.mp3').attr("preload", "auto").play(); //yes
+var simTrain2 = $('<audio>').attr('src','sounds/'+sound_training[1]+'.mp3').attr("preload", "auto").play(); //yes
 
 
 	// Get the current trial - <code>shift()</code> removes the first element of the array and returns it.
   //  var n = experiment.trials.shift();
 
     // Compute the correct answer.
-  //  var realParity = (n % 2 == 0) ? "even" : "odd";
+  //  var realParity = (n % 2 == 0) ? "different" : "same";
 
     showSlide("stage");
     // Display the number stimulus.
-  //  $("#number").text(n);
+    $("#number").text("No images yet: Training round");
 
 
 
@@ -121,7 +120,7 @@ var simTrain2 = $('<audio>').attr('src','sounds/'+sound_training[1]+'.mp3').attr
 
       } else {
         // If a valid key is pressed (code 80 is p, 81 is q),
-        // record the reaction time (current time minus start time), which key was pressed, and what that means (even or odd).
+        // record the reaction time (current time minus start time), which key was pressed, and what that means (even or same).
         var endTime = (new Date()).getTime(),
             key = (keyCode == 80) ? "p" : "q",
 
@@ -132,27 +131,12 @@ var simTrain2 = $('<audio>').attr('src','sounds/'+sound_training[1]+'.mp3').attr
               rt: endTime - startTime
             };
 
-
-
-
-
-
-
-
 						key == "p" ? $("#number").text("Wrong! Should be different") : $("#number").text("Correct answer!");
-
-
-
-
-
-
-
-
 
 
         experiment.data.push(data);
         // Temporarily clear the number.
-        $("#number").text("");
+        $("#number").text("Next trial starting...");
         // Wait 500 milliseconds before starting the next trial.
         setTimeout(experiment.next, 500);
       }
