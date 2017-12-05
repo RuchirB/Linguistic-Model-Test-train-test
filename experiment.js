@@ -75,18 +75,6 @@ var experiment = {
       return;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
 		var sound_training = ["yes", "no", "yes", "no"]
 		var sound_similar =[
     ["yes", "yes", "yes", "yes"],
@@ -98,31 +86,20 @@ var experiment = {
 ]
 
 //First the training
-var simTrain1= $('<audio>').attr('src','sounds/'+sound_training[0]+'.mp3').attr("preload", "auto");
+var simTrain1= $('<audio>').attr('src','sounds/'+sound_training[0]+'.mp3').attr("preload", "auto"); //yes
 
-var simTrain2 = $('<audio>').attr('src','sounds/'+sound_training[1]+'.mp3').attr("preload", "auto");
-
-
+var simTrain2 = $('<audio>').attr('src','sounds/'+sound_training[1]+'.mp3').attr("preload", "auto"); //yes
 
 
-    // Get the current trial - <code>shift()</code> removes the first element of the array and returns it.
+	// Get the current trial - <code>shift()</code> removes the first element of the array and returns it.
   //  var n = experiment.trials.shift();
 
     // Compute the correct answer.
   //  var realParity = (n % 2 == 0) ? "even" : "odd";
 
-  //  showSlide("stage");
+    showSlide("stage");
     // Display the number stimulus.
   //  $("#number").text(n);
-
-
-
-
-
-
-
-
-
 
 
 
