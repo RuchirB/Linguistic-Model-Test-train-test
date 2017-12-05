@@ -1,9 +1,9 @@
 <!-- ## Introduction -->
-<!-- This example experiment is a categorization task. On every trial, the subject sees a number and has to press a key depending on whether the number is even or odd. There are two between-subjects independent variables: which keys get pressed (either P for even and Q for odd or vice versa) and the trial order (subjects see one of two fixed orders). There are two dependent variables: accuracy and reaction time. -->
+<!-- This example experiment is a categorization task. On every trial, the subject sees a number and has to press a key depending on whether the number is different or same. There are two between-subjects independent variables: which keys get pressed (either P for different and Q for same or vice versa) and the trial order (subjects see one of two fixed orders). There are two dependent variables: accuracy and reaction time. -->
 
 <!-- This example assumes that you already know the basics of HTML, JavaScript (JS), and CSS. If not, [the Codecademy tutorials](http://www.codecademy.com/tracks/javascript) are a useful starting point. -->
 
-<!-- This page contains source code on the right and explanations/commentary on the left. You can jump around the different files by using the "Jump To ..." menu in the upper right corner. You will also want to refer to <a href="../even-odd.html">the actual experiment</a>. -->
+<!-- This page contains source code on the right and explanations/commentary on the left. You can jump around the different files by using the "Jump To ..." menu in the upper right corner. You will also want to refer to <a href="../different-same.html">the actual experiment</a>. -->
 
 <!-- ## Code -->
 <html>
@@ -27,11 +27,11 @@
     <img src="images/stanford.png" height="46" width="360" alt="Stanford University">
   </div>
 		<p id='logo-text'>Stanford Computation and Cognition Lab</p>
-		<p id='logo-text'>The original source code for this project is on Gihub at: <a href = "https://github.com/RuchirB/Linguistic-Model-Test-train-test/blob/master/even-odd.html"> RuchirB Github</a> </p>
+		<p id='logo-text'>The original source code for this project is on Gihub at: <a href = "https://github.com/RuchirB/Linguistic-Model-Test-train-test/blob/master/different-same.html"> RuchirB Github</a> </p>
 	<p class="block-text">In this experiment, you will see numbers displayed on the screen.
 		<!-- Tell the subject which keys to press. We need to set these values dynamically; I use <code>{{}}</code> to indicate template locations in HTML that will be modified by JavaScript. -->
-		Press <span id="even-key">{{}}</span> if the sounds are different and
-		<span id="odd-key">{{}}</span> if the sounds are the same.
+		Press <span id="different-key">{{}}</span> if the sounds are different and
+		<span id="same-key">{{}}</span> if the sounds are the same.
 	</p>
 	<!-- Button to start the experiment. <code>this.blur()</code> removes the focus from the button, if the user pressed the button by using the keyboard, rather than the mouse. -->
 	<button type="button" onclick="this.blur(); experiment.next()">Start</button>
