@@ -8,7 +8,7 @@
 <!-- ## Code -->
 <html>
 <head>
-	<title>Even/odd experiment</title>
+	<title>Same/Different sound experiment</title>
 	<!-- Include the [jQuery library](http://jquery.com/), which helps you manipulate HTML elements from JS. -->
 	<script src="jquery-1.11.2.min.js"></script>
 
@@ -27,10 +27,11 @@
     <img src="images/stanford.png" height="46" width="360" alt="Stanford University">
   </div>
 		<p id='logo-text'>Stanford Computation and Cognition Lab</p>
+		<p id='logo-text'>The original source code for this project is on Gihub at: <a href = "https://github.com/RuchirB/Linguistic-Model-Test-train-test/blob/master/even-odd.html"> RuchirB Github</a> </p>
 	<p class="block-text">In this experiment, you will see numbers displayed on the screen.
 		<!-- Tell the subject which keys to press. We need to set these values dynamically; I use <code>{{}}</code> to indicate template locations in HTML that will be modified by JavaScript. -->
-		Press <span id="even-key">{{}}</span> if the number is even and
-		<span id="odd-key">{{}}</span> if the number is odd.
+		Press <span id="even-key">{{}}</span> if the sounds are different and
+		<span id="odd-key">{{}}</span> if the sounds are the same.
 	</p>
 	<!-- Button to start the experiment. <code>this.blur()</code> removes the focus from the button, if the user pressed the button by using the keyboard, rather than the mouse. -->
 	<button type="button" onclick="this.blur(); experiment.next()">Start</button>
